@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="loginViewModel"
+            type="com.deuksoft.tamjiat.activity.login.LoginViewModel"/>
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activity.login.LoginActivity">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideLine1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.2"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideLine2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.78"/>
+
+        <ImageView
+            android:id="@+id/login_back"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:src="@drawable/login_back"/>
+
+
+        <View
+            android:id="@+id/logo_back"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:background="@drawable/login_logo_back"
+            app:layout_constraintTop_toTopOf="@id/guideLine1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+
+        <ImageView
+            android:layout_width="220dp"
+            android:layout_height="200dp"
+            android:src="@drawable/tamjiat_logo_color"
+            app:layout_constraintTop_toTopOf="@id/logo_back"
+            app:layout_constraintBottom_toBottomOf="@id/logo_back"
+            app:layout_constraintStart_toStartOf="@id/logo_back"
+            app:layout_constraintEnd_toEndOf="@id/logo_back"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/loginBtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="LOGIN"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:layout_marginHorizontal="50dp"
+            android:background="@drawable/login_btn_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/guideLine2"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
