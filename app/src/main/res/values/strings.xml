@@ -3,4 +3,5 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="kakao_app_key">6034cf8d6f5a811e32e3188f1f552fa4</string>
 </resources>
