@@ -70,7 +70,7 @@ class LoginActivity : AppCompatActivity() {
                     userData.setProfileImg(user.kakaoAccount?.profile!!.profileImageUrl)
 
                     Log.e("sdfds", userData.getUserData().get("USER_ID").toString())*/
-
+                    Log.e("userProfile", user.kakaoAccount.toString())
                     Log.i("Request Success", "사용자 정보 요청 성공" +
                             "\n회원번호: ${user.id}" +
                             "\n성별: ${user.kakaoAccount?.gender}")
