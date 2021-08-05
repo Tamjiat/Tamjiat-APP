@@ -18,8 +18,15 @@
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.deuksoft.tamjiat.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_cameradetect"
+        android:name="com.deuksoft.tamjiat.ui.cameradetect.CameraDetectFragment"
+        android:label="@string/title_cameradetect"
+        tools:layout="@layout/fragment_cameradetect" />
+
+    <fragment
+        android:id="@+id/navigation_gallarydetect"
+        android:name="com.deuksoft.tamjiat.ui.gallarydetect.GallaryDetectFragment"
+        android:label="@string/title_gallarydetect"
+        tools:layout="@layout/fragment_gallarydetect" />
+
 </navigation>

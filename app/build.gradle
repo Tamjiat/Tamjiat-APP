@@ -63,6 +63,18 @@ dependencies {
     // 카카오 로그인
     implementation "com.kakao.sdk:v2-user:2.4.2"
 
+    //안드로이드 CameraX
+    def camerax_version = "1.0.0"
+    implementation "androidx.camera:camera-camera2:$camerax_version"
+    implementation "androidx.camera:camera-lifecycle:$camerax_version"
+    implementation "androidx.camera:camera-view:1.0.0-alpha27"
+
+    //권한 설정 통합 라이브러리
+    implementation 'gun0912.ted:tedpermission:2.2.2'
+
+
+    implementation 'nl.joery.animatedbottombar:library:1.0.9'
+
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
