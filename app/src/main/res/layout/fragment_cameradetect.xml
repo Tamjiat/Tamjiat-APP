@@ -15,6 +15,13 @@
         android:layout_height="match_parent"
         tools:context=".ui.cameradetect.CameraDetectFragment">
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/camera_guideLine1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.65"/>
+
         <androidx.camera.view.PreviewView
             android:id="@+id/camera"
             android:layout_width="match_parent"
@@ -32,15 +39,8 @@
             android:layout_margin="10dp"
             android:src="@drawable/tamjiat_logo_white"/>
 
-        <TextView
-            android:id="@+id/tempView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="?attr/actionBarSize"
-            app:layout_constraintBottom_toBottomOf="parent"/>
-
         <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/myLocation"
+            android:id="@+id/scanAnimation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="2dp"
@@ -52,6 +52,24 @@
             app:lottie_loop="true"
             app:lottie_rawRes="@raw/camera_scan"
             app:lottie_renderMode="automatic" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="터치하여 농작물을 스캔 해주세요!"
+            android:textSize="17dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/camera_guideLine1"/>
+
+        <TextView
+            android:id="@+id/tempView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="?attr/actionBarSize"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
