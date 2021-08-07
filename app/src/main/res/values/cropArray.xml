@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="cropNames">
+        <item>선택하세요</item>
+        <item>고추</item>
+        <item>무</item>
+        <item>배추</item>
+        <item>애호박</item>
+        <item>양배추</item>
+        <item>오이</item>
+        <item>콩</item>
+        <item>토마토</item>
+        <item>파</item>
+        <item>호박</item>
+    </string-array>
+</resources>

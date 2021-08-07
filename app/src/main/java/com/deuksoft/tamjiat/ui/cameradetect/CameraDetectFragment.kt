@@ -5,6 +5,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.TextView
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.Preview
@@ -18,7 +20,7 @@ import com.deuksoft.tamjiat.R
 import com.deuksoft.tamjiat.databinding.FragmentCameradetectBinding
 import java.lang.Exception
 
-class CameraDetectFragment : Fragment() {
+class CameraDetectFragment : Fragment(), AdapterView.OnItemSelectedListener, View.OnClickListener {
 
     private lateinit var cameraDetectViewModel: CameraDetectViewModel
     private var _cameraBinding: FragmentCameradetectBinding? = null
@@ -31,8 +33,15 @@ class CameraDetectFragment : Fragment() {
         cameraBinding.cameraDetectViewModel = cameraDetectViewModel
         cameraBinding.lifecycleOwner = this
         startCamera()
-
+        init()
+        cameraBinding.cropsName.onItemSelectedListener = this
+        cameraBinding.scanWait.setOnClickListener(this)
         return cameraBinding.root
+    }
+
+    private fun init(){
+        var cropsAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, resources.getStringArray(R.array.cropNames))
+        cameraBinding.cropsName.adapter = cropsAdapter
     }
 
     private fun startCamera(){
@@ -57,5 +66,31 @@ class CameraDetectFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _cameraBinding = null
+    }
+
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        var s = parent?.getItemAtPosition(position).toString()
+        Log.e("items", s)
+
+    }
+
+    override fun onNothingSelected(parent: AdapterView<*>?) {
+
+    }
+
+    override fun onClick(v: View?) {
+        when(v?.id){
+            cameraBinding.scanWait.id->{
+                cameraBinding.scanWait.visibility = View.GONE
+                cameraBinding.noticeTxt.visibility = View.GONE
+                cameraBinding.farmNum.visibility = View.GONE
+                cameraBinding.farmNumTxt.visibility = View.GONE
+                cameraBinding.scanAnimation.visibility = View.GONE
+                cameraBinding.photographerName.visibility = View.GONE
+                cameraBinding.photographerNameTxt.visibility = View.GONE
+                cameraBinding.cropsName.visibility = View.INVISIBLE
+                cameraBinding.captureBtn.visibility = View.VISIBLE
+            }
+        }
     }
 }
