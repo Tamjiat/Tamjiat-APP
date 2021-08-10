@@ -1,10 +1,288 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.home.HomeFragment">
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="homeViewModel"
+            type="com.deuksoft.tamjiat.ui.home.HomeViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.home.HomeFragment">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/dash_dashboard1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.7"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/dash_dashboard2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.11"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/dash_dashboard3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.08"/>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/dash_dashboard4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.2"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/dash_dashboard5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.28"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/dash_dashboard6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.42"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/dash_dashboard7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.25"/>
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/dash_dashboard8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.51"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/dash_dashboard9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.48"/>
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/dash_dashboard10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.54"/>
+
+        <LinearLayout
+            android:id="@+id/backgound_deco"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/dash_dashboard1">
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2.5"
+                android:background="@color/dashboardColor1"/>
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3.5"
+                android:background="@color/dashboardColor2"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/helloTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="안녕하세요"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            app:layout_constraintLeft_toLeftOf="@id/dash_dashboard3"
+            app:layout_constraintTop_toBottomOf="@id/dash_dashboard2"/>
+
+        <TextView
+            android:id="@+id/userNameTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="김득회 님!"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="29sp"
+            android:layout_marginTop="5dp"
+            app:layout_constraintLeft_toLeftOf="@id/dash_dashboard4"
+            app:layout_constraintTop_toBottomOf="@id/helloTxt"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="재배중인 작물"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            app:layout_constraintLeft_toLeftOf="@id/dash_dashboard3"
+            app:layout_constraintTop_toBottomOf="@id/dash_dashboard5"/>
+
+        <TextView
+            android:id="@+id/totalTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="총"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@id/dash_dashboard6"
+            app:layout_constraintLeft_toLeftOf="@id/dash_dashboard3"/>
+
+        <TextView
+            android:id="@+id/cropNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="55sp"
+            android:layout_marginHorizontal="5dp"
+            app:layout_constraintLeft_toRightOf="@id/totalTxt"
+            app:layout_constraintBottom_toTopOf="@id/dash_dashboard6"
+            android:text="5"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="종"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:layout_marginLeft="5dp"
+            app:layout_constraintLeft_toRightOf="@id/cropNum"
+            app:layout_constraintBottom_toTopOf="@id/dash_dashboard6"/>
+
+        <LinearLayout
+            android:id="@+id/weatherBox"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:background="@drawable/weather_back"
+            app:layout_constraintTop_toTopOf="@id/dash_dashboard7"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/dash_dashboard8"
+            app:layout_constraintLeft_toLeftOf="@id/dash_dashboard9">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/dash_dashboard10"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent">
+
+            <LinearLayout
+                android:id="@+id/home_btn1"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:orientation="vertical"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/main_btn1">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="18dp"
+                    android:text="카메라로\n탐색하기"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="20sp"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/camera"
+                        android:layout_gravity="right"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/home_btn2"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:orientation="vertical"
+                android:background="@drawable/main_btn2">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="18dp"
+                    android:text="사진으로\n탐색하기"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="20sp"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/gallary"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/leaf1"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/leaf"
+            android:layout_marginTop="20dp"
+            app:layout_constraintLeft_toLeftOf="@id/btn_layout"
+            app:layout_constraintTop_toBottomOf="@id/btn_layout"/>
+
+        <TextView
+            android:id="@+id/cultivatedTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="재배종목"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="10dp"
+            app:layout_constraintLeft_toRightOf="@id/leaf1"
+            app:layout_constraintBottom_toBottomOf="@id/leaf1"
+            app:layout_constraintTop_toTopOf="@id/leaf1"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/mainCrop"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/leaf1"
+            app:layout_constraintLeft_toLeftOf="@id/btn_layout"
+            app:layout_constraintRight_toRightOf="@id/btn_layout"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginVertical="10dp"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
