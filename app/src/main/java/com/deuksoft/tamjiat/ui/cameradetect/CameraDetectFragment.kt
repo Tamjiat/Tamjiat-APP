@@ -1,5 +1,6 @@
 package com.deuksoft.tamjiat.ui.cameradetect
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -17,10 +18,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.deuksoft.tamjiat.R
+import com.deuksoft.tamjiat.activity.main.MainActivity
 import com.deuksoft.tamjiat.databinding.FragmentCameradetectBinding
 import java.lang.Exception
 
-class CameraDetectFragment : Fragment(), AdapterView.OnItemSelectedListener, View.OnClickListener {
+class CameraDetectFragment : Fragment(), AdapterView.OnItemSelectedListener, View.OnClickListener, MainActivity.onKeyBackPressedListener {
 
     private lateinit var cameraDetectViewModel: CameraDetectViewModel
     private var _cameraBinding: FragmentCameradetectBinding? = null
@@ -92,5 +94,17 @@ class CameraDetectFragment : Fragment(), AdapterView.OnItemSelectedListener, Vie
                 cameraBinding.captureBtn.visibility = View.VISIBLE
             }
         }
+    }
+    override fun onBackKey() {
+        var activity = activity as MainActivity
+        activity.apply {
+            setOnKeyBackPressedListener(null)
+            onBackPressed()
+        }
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (context as MainActivity).setOnKeyBackPressedListener(this)
     }
 }

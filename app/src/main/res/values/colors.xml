@@ -13,4 +13,5 @@
     <color name="dashboardColor2">#3946AC</color>
     <color name="weatherback">#ECC8C8</color>
     <color name="main_cultivated">#E0E0E0</color>
+    <color name="backColor">#F8F8F8</color>
 </resources>
