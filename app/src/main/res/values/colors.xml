@@ -14,4 +14,10 @@
     <color name="weatherback">#ECC8C8</color>
     <color name="main_cultivated">#E0E0E0</color>
     <color name="backColor">#F8F8F8</color>
+    <color name="dashboardColor">#EEEEEE</color>
+    <color name="progressFt">#3498db</color>
+    <color name="cropBack">#f08040</color>
+    <color name="cropnum1">#f39d12</color>
+    <color name="cropnum2">#8e44ad</color>
+    <color name="cropnum3">#27ae5f</color>
 </resources>
