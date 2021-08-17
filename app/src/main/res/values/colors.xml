@@ -20,4 +20,10 @@
     <color name="cropnum1">#f39d12</color>
     <color name="cropnum2">#8e44ad</color>
     <color name="cropnum3">#27ae5f</color>
+
+    <color name="temperStart">#FF8C3F</color>
+    <color name="temperEnd">#FF6600</color>
+
+    <color name="humidityStart">#61B9FF</color>
+    <color name="humidityEnd">#008EFF</color>
 </resources>

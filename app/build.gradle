@@ -63,6 +63,8 @@ dependencies {
     // 카카오 로그인
     implementation "com.kakao.sdk:v2-user:2.4.2"
 
+    implementation 'com.zarinpal:cardviewpager:0.5.3'
+
     //안드로이드 CameraX
     def camerax_version = "1.0.0"
     implementation "androidx.camera:camera-camera2:$camerax_version"

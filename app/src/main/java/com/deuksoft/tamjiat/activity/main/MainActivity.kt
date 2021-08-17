@@ -80,5 +80,10 @@ class MainActivity : AppCompatActivity(), AnimatedBottomBar.OnTabSelectListener 
 
     }
 
+    fun setNavEnable(state :Boolean){
+        for(i in 0..3){
+            mainBinding.navView.setTabEnabledAt(i, state)
+        }
+    }
 
 }

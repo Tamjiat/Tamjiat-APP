@@ -43,6 +43,9 @@ class GallaryDetectFragment: Fragment(), MainActivity.onKeyBackPressedListener {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+    }
     override fun onAttach(context: Context) {
         super.onAttach(context)
         (context as MainActivity).setOnKeyBackPressedListener(this)

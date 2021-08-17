@@ -31,7 +31,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/tempView"/>
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
         <View
             android:id="@+id/scanWait"
@@ -41,7 +41,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:background="#A9000000"
-            app:layout_constraintBottom_toTopOf="@id/tempView"/>
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
         <ImageView
             android:layout_width="130dp"
@@ -76,19 +76,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/scanAnimation"/>
 
-        <TextView
-            android:id="@+id/tempView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="?attr/actionBarSize"
-            app:layout_constraintBottom_toBottomOf="parent"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:background="@drawable/camerabottom"
             android:padding="17dp"
-            app:layout_constraintBottom_toTopOf="@id/tempView"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
@@ -145,7 +139,7 @@
                 android:text="농가번호 : "
                 android:textSize="16sp"
                 android:textColor="@color/black"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/subTitle"
                 app:layout_constraintBottom_toBottomOf="parent"/>
