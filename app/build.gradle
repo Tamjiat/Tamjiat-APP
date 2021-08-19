@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -74,6 +75,9 @@ dependencies {
     //권한 설정 통합 라이브러리
     implementation 'gun0912.ted:tedpermission:2.2.2'
 
+    //Android Database SQLite
+    implementation "androidx.room:room-runtime:2.3.0"
+    kapt "androidx.room:room-compiler:2.3.0"
 
     implementation 'nl.joery.animatedbottombar:library:1.0.9'
 

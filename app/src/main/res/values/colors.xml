@@ -11,7 +11,9 @@
     <color name="mainColor">#002a8c</color>
     <color name="dashboardColor1">#333E9E</color>
     <color name="dashboardColor2">#3946AC</color>
-    <color name="weatherback">#ECC8C8</color>
+<!--    <color name="weatherback">#B85E5E</color>-->
+    <color name="weatherback">#95000000</color>
+
     <color name="main_cultivated">#E0E0E0</color>
     <color name="backColor">#F8F8F8</color>
     <color name="dashboardColor">#EEEEEE</color>
@@ -26,4 +28,6 @@
 
     <color name="humidityStart">#61B9FF</color>
     <color name="humidityEnd">#008EFF</color>
+
+    <color name="lightGray">#E0E0E0</color>
 </resources>

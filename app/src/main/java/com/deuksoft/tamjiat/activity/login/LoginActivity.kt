@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.deuksoft.tamjiat.R
+import com.deuksoft.tamjiat.SaveInfoManager.UserInfo
 import com.deuksoft.tamjiat.activity.main.MainActivity
 import com.deuksoft.tamjiat.databinding.ActivityLoginBinding
 import com.kakao.sdk.auth.model.OAuthToken
@@ -74,6 +75,8 @@ class LoginActivity : AppCompatActivity() {
                     Log.i("Request Success", "사용자 정보 요청 성공" +
                             "\n회원번호: ${user.id}" +
                             "\n성별: ${user.kakaoAccount?.gender}")
+
+                    UserInfo(this).setUserInfo(user)//사용자 정보 저장
 
                     Toast.makeText(this, "로그인에 성공하였습니다.", Toast.LENGTH_SHORT).show()
                     startActivity(Intent(this, MainActivity::class.java))

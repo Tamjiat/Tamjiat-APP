@@ -10,7 +10,7 @@ import androidx.core.animation.doOnEnd
 import androidx.core.animation.doOnStart
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.deuksoft.tamjiat.HTTPManager.dtoManager.testDTO
+import com.deuksoft.tamjiat.HTTPManager.DTOManager.testDTO
 import com.deuksoft.tamjiat.activity.main.MainActivity
 import com.deuksoft.tamjiat.databinding.FragmentDashboardBinding
 import com.deuksoft.tamjiat.itemAdapter.cropsAdapter

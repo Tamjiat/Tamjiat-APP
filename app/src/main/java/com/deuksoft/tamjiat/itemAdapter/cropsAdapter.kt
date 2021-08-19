@@ -2,7 +2,7 @@ package com.deuksoft.tamjiat.itemAdapter
 
 import android.view.View
 import android.widget.TextView
-import com.deuksoft.tamjiat.HTTPManager.dtoManager.testDTO
+import com.deuksoft.tamjiat.HTTPManager.DTOManager.testDTO
 import com.deuksoft.tamjiat.R
 import com.zarinpal.libs.cardviwepager.BaseCardViewPagerItem
 

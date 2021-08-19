@@ -40,7 +40,9 @@ class IntroActivity : AppCompatActivity() {
             .setRationaleMessage("앱을 사용하기위해서는 권한 허용이 필요합니다!")
             .setDeniedMessage("승인 거부 [설정] > [권한]에서 권한 승인 가능")
             .setPermissions(
-                android.Manifest.permission.CAMERA
+                android.Manifest.permission.CAMERA,
+                android.Manifest.permission.ACCESS_FINE_LOCATION,
+                android.Manifest.permission.ACCESS_COARSE_LOCATION
             ).check()
     }
 
