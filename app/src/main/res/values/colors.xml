@@ -30,4 +30,7 @@
     <color name="humidityEnd">#008EFF</color>
 
     <color name="lightGray">#E0E0E0</color>
+    <color name="userName">#e5c92c</color>
+    <color name="customGreen">#27ae60</color>
+    <color name="customGray">#7f7f7f</color>
 </resources>

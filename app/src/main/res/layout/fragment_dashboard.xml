@@ -536,15 +536,52 @@
             app:layout_constraintLeft_toLeftOf="@id/leafImg2"
             app:layout_constraintRight_toRightOf="@id/countLayout"
             app:layout_constraintBottom_toBottomOf="parent"
-
             android:layout_gravity="center"
             app:selectIndicatorColor="@color/black"
             app:unSelectIndicatorColor="@color/white"
             app:visibleBottomPadding="5dp"
             app:visibleIndicator="false"
-            app:visibleLeftPadding="30dp"
-            app:visibleRightPadding="30dp"
+            app:visibleLeftPadding="15dp"
+            app:visibleRightPadding="15dp"
             app:visibleTopPadding="5dp" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/emptyCropList"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/empty_crop_list"
+            android:elevation="5dp"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/cropContent"
+            app:layout_constraintLeft_toLeftOf="@id/leafImg2"
+            app:layout_constraintRight_toRightOf="@id/countLayout"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginVertical="10dp">
+
+            <ImageView
+                android:id="@+id/listImage"
+                android:layout_width="80dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/tamjiat_logo_color_black"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="추가한 작물이 없어요!"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintVertical_bias="0.15"
+                app:layout_constraintTop_toBottomOf="@id/listImage"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

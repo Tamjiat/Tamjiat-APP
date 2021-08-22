@@ -2,11 +2,17 @@ package com.deuksoft.tamjiat.SaveInfoManager
 
 import android.content.Context
 import com.kakao.sdk.user.model.User
-
+/*
+* @author: 김득회
+* @작성일 : 2021-08-22
+* */
 class UserInfo(context: Context) {
     var userInfoData = context.getSharedPreferences("userInfo", Context.MODE_PRIVATE)
     var editor = userInfoData.edit()
 
+    /*
+    * 사용자 정보를 저장하고 읽고 삭제하는 곳이다. 사용자가 로그인을 하면 정보를 저장하고, 로그아웃을 하게 되면 제거를 한다.
+    * */
     fun setUserInfo(user : User){
         editor.apply {
             putString(USER_ID, user.id.toString()).apply()
@@ -23,6 +29,10 @@ class UserInfo(context: Context) {
             USER_NAME to userInfoData.getString(USER_NAME, "")!!.toString(),
             USER_IMAGE to userInfoData.getString(USER_IMAGE, "")!!.toString(),
         )
+    }
+
+    fun removeUserInfo(){
+        editor.clear().apply()
     }
 
     companion object{

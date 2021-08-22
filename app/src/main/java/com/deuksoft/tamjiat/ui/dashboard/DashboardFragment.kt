@@ -8,56 +8,92 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.animation.doOnEnd
 import androidx.core.animation.doOnStart
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.deuksoft.tamjiat.HTTPManager.DTOManager.testDTO
+import com.deuksoft.tamjiat.HTTPManager.DTOManager.CropDetailDTO
+import com.deuksoft.tamjiat.HTTPManager.DTOManager.CropSummaryDTO
+import com.deuksoft.tamjiat.SaveInfoManager.UserInfo
 import com.deuksoft.tamjiat.activity.main.MainActivity
 import com.deuksoft.tamjiat.databinding.FragmentDashboardBinding
-import com.deuksoft.tamjiat.itemAdapter.cropsAdapter
+import com.deuksoft.tamjiat.itemAdapter.CropsAdapter
 
 class DashboardFragment : Fragment(), MainActivity.onKeyBackPressedListener {
 
     private lateinit var dashboardViewModel: DashboardViewModel
-    private var _binding: FragmentDashboardBinding? = null
+    private var _dashBoardBinding: FragmentDashboardBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
-    private val binding get() = _binding!!
+    private val dashBoardBinding get() = _dashBoardBinding!!
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         dashboardViewModel = ViewModelProvider(this).get(DashboardViewModel::class.java)
+        _dashBoardBinding = FragmentDashboardBinding.inflate(inflater, container, false)
 
-        _binding = FragmentDashboardBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-        var item1 = testDTO("ftsf")
-        var item2 = testDTO("asd")
-        var item3 = testDTO("asd")
-
-        var adapter = cropsAdapter()
-        adapter.addCardItem(item1)
-        adapter.addCardItem(item2)
-        adapter.addCardItem(item3)
-
-        adapter.setElevation(0.6f)
-        binding.cardViewPager.setAdapter(adapter)
-        binding.cardViewPager.isShowShadowTransformer(true)
+        setUserCrops()
 
         numCounter(0, 80, 0) //harvestProcess
         numCounter(0, 60, 1) //temp
         numCounter(0, 90, 2) //humidity
         numCounter(0, 12, 3) //wind
-        numCounter(0, 5, 4) //totalNum
-        numCounter(0, 3, 5) //crop1
-        numCounter(0, 1, 6) //crop2
-        numCounter(0, 1, 7) //crop3
-        return root
+        return dashBoardBinding.root
     }
 
     /**
      * 카운트 애니메이션을 작동시키는 실질적은 메서드이다.
      * duration값에 목표하는 초에 맞춰 값이 오르게 된다.
      */
+    private fun setUserCrops(){
+        dashboardViewModel.getCropDetail(UserInfo(requireContext()).getUserInfo()["USER_ID"]!!).observe(viewLifecycleOwner){
+                cropList -> setCropAdapter(cropList)
+        }
+        dashboardViewModel.getCropSummary(UserInfo(requireContext()).getUserInfo()["USER_ID"]!!).observe(viewLifecycleOwner){
+            summaryList-> setCropSummary(summaryList)
+        }
+    }
+
+    private fun setCropSummary(summaryList: List<CropSummaryDTO>){
+        if(summaryList.isNotEmpty()){
+            for(item in summaryList){
+                when(item.category){
+                    "노지" -> numCounter(0, item.count, 5) //crop1
+                    "하우스" -> numCounter(0, item.count, 6) //crop2
+                    "고랭지" -> numCounter(0, item.count, 7) //crop3
+                    "total" -> numCounter(0, item.count, 4) //totalNum
+                }
+            }
+        }else{
+            numCounter(0, 0, 4) //totalNum
+            numCounter(0, 0, 5) //crop1
+            numCounter(0, 0, 6) //crop2
+            numCounter(0, 0, 7) //crop3
+        }
+    }
+
+    private fun setCropAdapter(cropList: List<CropDetailDTO>){
+        if(cropList.isNotEmpty()){
+            var cropsAdapter = CropsAdapter()
+            cropsAdapter.setElevation(0.6f)
+            dashBoardBinding.apply {
+                cardViewPager.isVisible = true
+                emptyCropList.isVisible = false
+            }
+            for(item in cropList){
+                cropsAdapter.addCardItem(item)
+            }
+            dashBoardBinding.cardViewPager.apply {
+                setAdapter(cropsAdapter)
+                isShowShadowTransformer(true)
+            }
+        }else{
+            dashBoardBinding.apply {
+                cardViewPager.isVisible = false
+                emptyCropList.isVisible = true
+            }
+        }
+    }
+
     private fun numCounter(start: Int, end: Int, flag : Int){
 
         var animation = ValueAnimator.ofInt(start, end).apply {
@@ -66,37 +102,37 @@ class DashboardFragment : Fragment(), MainActivity.onKeyBackPressedListener {
         animation.addUpdateListener {value->
             when(flag){
                 0->{
-                    binding.apply {
+                    dashBoardBinding.apply {
                         harvestPerc.text = let { "${value.animatedValue} %" }
                         harvestProgress.progress = let { value.animatedValue.toString().toInt() }
                     }
                 }
                 1 ->{
-                    binding.apply {
+                    dashBoardBinding.apply {
                         tempCounter.text = let { "${value.animatedValue}℃" }
                         tempProgress.progress = let { value.animatedValue.toString().toInt() }
                     }
                 }
                 2 ->{
-                    binding.apply {
+                    dashBoardBinding.apply {
                         humCounter.text = let { "${value.animatedValue} %" }
                         humidityProgress.progress = let { value.animatedValue.toString().toInt() }
                     }
                 }
                 3->{
-                    binding.windCounter.text = let {"${value.animatedValue} m/s" }
+                    dashBoardBinding.windCounter.text = let {"${value.animatedValue} m/s" }
                 }
                 4 ->{
-                    binding.totalNum.text =  let { value.animatedValue.toString()}
+                    dashBoardBinding.totalNum.text =  let { value.animatedValue.toString()}
                 }
                 5 ->{
-                    binding.crop1.text =  let { value.animatedValue.toString()}
+                    dashBoardBinding.crop1.text =  let { value.animatedValue.toString()}
                 }
                 6 ->{
-                    binding.crop2.text =  let { value.animatedValue.toString()}
+                    dashBoardBinding.crop2.text =  let { value.animatedValue.toString()}
                 }
                 7 ->{
-                    binding.crop3.text =  let { value.animatedValue.toString()}
+                    dashBoardBinding.crop3.text =  let { value.animatedValue.toString()}
                 }
             }
         }
@@ -113,7 +149,7 @@ class DashboardFragment : Fragment(), MainActivity.onKeyBackPressedListener {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
+        _dashBoardBinding = null
     }
     override fun onBackKey() {
         var activity = activity as MainActivity

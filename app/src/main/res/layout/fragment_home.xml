@@ -104,11 +104,12 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2.5"
                 android:background="@color/dashboardColor1"/>
+
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="3.5"
-                android:background="@color/dashboardColor2"/>
+                android:background="@color/dashboardColor2" />
         </LinearLayout>
 
         <TextView
@@ -133,6 +134,15 @@
             android:layout_marginTop="5dp"
             app:layout_constraintLeft_toLeftOf="@id/dash_dashboard4"
             app:layout_constraintTop_toBottomOf="@id/helloTxt"/>
+
+        <ImageView
+            android:id="@+id/userImage"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/dash_dashboard2"
+            android:layout_marginRight="20dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -162,6 +172,7 @@
             android:textColor="@color/white"
             android:textStyle="bold"
             android:textSize="55sp"
+            app:layout_constraintBaseline_toBaselineOf="@id/totalTxt"
             android:layout_marginHorizontal="5dp"
             app:layout_constraintLeft_toRightOf="@id/totalTxt"
             app:layout_constraintBottom_toTopOf="@id/dash_dashboard6"
@@ -310,11 +321,50 @@
             android:id="@+id/mainCrop"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:visibility="gone"
             app:layout_constraintTop_toBottomOf="@id/leaf1"
             app:layout_constraintLeft_toLeftOf="@id/btn_layout"
             app:layout_constraintRight_toRightOf="@id/btn_layout"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginVertical="10dp"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/emptyCropList"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/empty_crop_list"
+            android:elevation="5dp"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/leaf1"
+            app:layout_constraintLeft_toLeftOf="@id/btn_layout"
+            app:layout_constraintRight_toRightOf="@id/btn_layout"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginVertical="10dp">
+
+            <ImageView
+                android:id="@+id/listImage"
+                android:layout_width="80dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/tamjiat_logo_color_black"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="추가한 작물이 없어요!"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintVertical_bias="0.15"
+                app:layout_constraintTop_toBottomOf="@id/listImage"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
