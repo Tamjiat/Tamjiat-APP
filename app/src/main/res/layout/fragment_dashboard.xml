@@ -52,6 +52,17 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
+        <Spinner
+            android:id="@+id/cropList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="25dp"
+            android:layout_margin="20dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+
         <ImageView
             android:id="@+id/riceIcon"
             android:layout_width="50dp"
@@ -86,7 +97,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:text="80 %"
+                android:text="0 %"
                 android:textColor="@color/black"
                 android:textSize="20dp"
                 android:textStyle="bold" />
@@ -99,14 +110,14 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
             android:layout_marginVertical="5dp"
-            app:layout_constraintVertical_bias="0.2"
             android:max="100"
-            android:progress="80"
+            android:progress="0"
             android:progressDrawable="@drawable/progress"
+            app:layout_constraintBottom_toTopOf="@id/dash_guidline1"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/dash_guidline1"
-            app:layout_constraintTop_toBottomOf="@id/harvestLayout" />
+            app:layout_constraintTop_toBottomOf="@id/harvestLayout"
+            app:layout_constraintVertical_bias="0.2" />
 
         <LinearLayout
             android:id="@+id/stateLayout"
@@ -136,38 +147,37 @@
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"/>
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <ProgressBar
                     android:id="@+id/tempProgress"
+                    style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:indeterminate="false"
                     android:layout_margin="5dp"
-                    android:progressDrawable="@drawable/temper_circle_progress"
                     android:background="@drawable/circle_ring_back"
-                    style="?android:attr/progressBarStyleHorizontal"
+                    android:indeterminate="false"
                     android:max="100"
-                    android:progress="50"
+                    android:progress="0"
+                    android:progressDrawable="@drawable/temper_circle_progress"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tempTxt"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    />
+                    app:layout_constraintTop_toBottomOf="@id/tempTxt" />
 
                 <TextView
                     android:id="@+id/tempCounter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="0℃"
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    android:text="60℃"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tempTxt"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    app:layout_constraintTop_toBottomOf="@id/tempTxt" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -188,38 +198,37 @@
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"/>
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <ProgressBar
                     android:id="@+id/humidityProgress"
+                    style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:indeterminate="false"
                     android:layout_margin="5dp"
-                    android:progressDrawable="@drawable/humidity_circle_progress"
                     android:background="@drawable/circle_ring_back"
-                    style="?android:attr/progressBarStyleHorizontal"
+                    android:indeterminate="false"
                     android:max="100"
-                    android:progress="50"
+                    android:progress="0"
+                    android:progressDrawable="@drawable/humidity_circle_progress"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/humidityTxt"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    />
+                    app:layout_constraintTop_toBottomOf="@id/humidityTxt" />
 
                 <TextView
                     android:id="@+id/humCounter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="0%"
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    android:text="60%"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/humidityTxt"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    app:layout_constraintTop_toBottomOf="@id/humidityTxt" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -238,33 +247,33 @@
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"/>
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <com.airbnb.lottie.LottieAnimationView
                     android:id="@+id/scanAnimation"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    app:lottie_autoPlay="true"
-                    app:lottie_loop="true"
-                    app:lottie_rawRes="@raw/wind_speed"
-                    app:lottie_renderMode="automatic"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/windSpeedTxt"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="true"
+                    app:lottie_rawRes="@raw/wind_speed"
+                    app:lottie_renderMode="automatic" />
 
                 <TextView
                     android:id="@+id/windCounter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="0 m/s"
                     android:textColor="@color/black"
                     android:textSize="15sp"
-                    android:layout_margin="10dp"
                     android:textStyle="bold"
-                    android:text="12 m/s"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toRightOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -525,18 +534,18 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@id/leafImg2"
             app:layout_constraintLeft_toRightOf="@id/leafImg2"
-            app:layout_constraintTop_toTopOf="@id/leafImg2"/>
+            app:layout_constraintTop_toTopOf="@id/leafImg2" />
 
         <com.zarinpal.libs.cardviwepager.CardViewPager
             android:id="@+id/cardViewPager"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_gravity="center"
             android:layout_marginVertical="15dp"
-            app:layout_constraintTop_toBottomOf="@id/cropContent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="@id/leafImg2"
             app:layout_constraintRight_toRightOf="@id/countLayout"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/cropContent"
             app:selectIndicatorColor="@color/black"
             app:unSelectIndicatorColor="@color/white"
             app:visibleBottomPadding="5dp"
@@ -549,14 +558,14 @@
             android:id="@+id/emptyCropList"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginVertical="10dp"
             android:background="@drawable/empty_crop_list"
             android:elevation="5dp"
             android:visibility="gone"
-            app:layout_constraintTop_toBottomOf="@id/cropContent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="@id/leafImg2"
             app:layout_constraintRight_toRightOf="@id/countLayout"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginVertical="10dp">
+            app:layout_constraintTop_toBottomOf="@id/cropContent">
 
             <ImageView
                 android:id="@+id/listImage"
@@ -566,7 +575,7 @@
                 android:layout_marginTop="5dp"
                 android:src="@drawable/tamjiat_logo_color_black"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -575,11 +584,11 @@
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:layout_constraintVertical_bias="0.15"
-                app:layout_constraintTop_toBottomOf="@id/listImage"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintTop_toBottomOf="@id/listImage"
+                app:layout_constraintVertical_bias="0.15" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

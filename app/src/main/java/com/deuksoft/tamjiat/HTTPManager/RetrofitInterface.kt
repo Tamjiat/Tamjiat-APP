@@ -23,4 +23,13 @@ interface RetrofitInterface {
 
     @POST("/dash/crop")
     fun getCropSummary(@Body userId: HashMap<String, String>):Call<List<CropSummaryDTO>>
+
+    @POST("/dash/cropCategory")
+    fun getCropCategory(@Body userId: HashMap<String, String>):Call<List<CropCategoryDTO>>
+
+    @POST("/dash/cropPercent")
+    fun getCropPercent(@Body requestData : HashMap<String, String>):Call<CropPercentDTO>
+
+    @POST("/auth/findUserA")
+    fun findUser(@Body userInfo : HashMap<String, String>):Call<PublicDTO>
 }

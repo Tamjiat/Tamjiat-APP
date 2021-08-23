@@ -2,10 +2,7 @@ package com.deuksoft.tamjiat.HTTPManager.RepositoryManager
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.deuksoft.tamjiat.HTTPManager.DTOManager.CropDetailDTO
-import com.deuksoft.tamjiat.HTTPManager.DTOManager.CropSummaryDTO
-import com.deuksoft.tamjiat.HTTPManager.DTOManager.CropWeekDTO
-import com.deuksoft.tamjiat.HTTPManager.DTOManager.TotalCropsNumDTO
+import com.deuksoft.tamjiat.HTTPManager.DTOManager.*
 import com.deuksoft.tamjiat.HTTPManager.RetrofitAPI
 import com.deuksoft.tamjiat.HTTPManager.RetrofitInterface
 import com.deuksoft.tamjiat.HTTPManager.Tools
@@ -85,6 +82,42 @@ class CropsRepository {
             }
 
             override fun onFailure(call: Call<List<CropSummaryDTO>>, t: Throwable) {
+                message.value = "서버와의 통신에 실패하였습니다."
+            }
+        })
+        return result
+    }
+
+    fun getCropCategory(userId: String):LiveData<List<CropCategoryDTO>>{
+        var userInfo = hashMapOf(
+            "uid" to userId
+        )
+        val result = MutableLiveData<List<CropCategoryDTO>>()
+        service.getCropCategory(userInfo).enqueue(object : Callback<List<CropCategoryDTO>>{
+            override fun onResponse(call: Call<List<CropCategoryDTO>>, response: Response<List<CropCategoryDTO>>) {
+                result.value = response.body()
+            }
+            override fun onFailure(call: Call<List<CropCategoryDTO>>, t: Throwable) {
+                message.value = "서버와의 통신에 실패하였습니다."
+            }
+        })
+        return result
+    }
+
+    fun getCropPercent(userId: String, cropsName: String, myLocate : HashMap<String, Double>): LiveData<CropPercentDTO>{
+        var requestData = hashMapOf(
+            "uid" to userId,
+            "cropsName" to cropsName,
+            "lon" to myLocate["lon"].toString(),
+            "lat" to myLocate["lat"].toString()
+        )
+        val result = MutableLiveData<CropPercentDTO>()
+        service.getCropPercent(requestData).enqueue(object : Callback<CropPercentDTO>{
+            override fun onResponse(call: Call<CropPercentDTO>, response: Response<CropPercentDTO>) {
+                result.value = response.body()
+            }
+
+            override fun onFailure(call: Call<CropPercentDTO>, t: Throwable) {
                 message.value = "서버와의 통신에 실패하였습니다."
             }
         })

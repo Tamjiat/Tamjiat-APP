@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="cropList">
+        <item>고추</item>
+        <item>토마토</item>
+        <item></item>
+        <item>발표</item>
+        <item>발표</item>
+        <item>발표</item>
+        <item>발표</item>
+    </string-array>
+</resources>

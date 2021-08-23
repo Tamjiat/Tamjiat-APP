@@ -3,14 +3,19 @@ package com.deuksoft.tamjiat.ui.dashboard
 import android.animation.ValueAnimator
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.core.animation.doOnEnd
 import androidx.core.animation.doOnStart
+import androidx.core.view.get
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.deuksoft.tamjiat.GISManager.GetMyLocation
 import com.deuksoft.tamjiat.HTTPManager.DTOManager.CropDetailDTO
 import com.deuksoft.tamjiat.HTTPManager.DTOManager.CropSummaryDTO
 import com.deuksoft.tamjiat.SaveInfoManager.UserInfo
@@ -18,7 +23,7 @@ import com.deuksoft.tamjiat.activity.main.MainActivity
 import com.deuksoft.tamjiat.databinding.FragmentDashboardBinding
 import com.deuksoft.tamjiat.itemAdapter.CropsAdapter
 
-class DashboardFragment : Fragment(), MainActivity.onKeyBackPressedListener {
+class DashboardFragment : Fragment(), MainActivity.onKeyBackPressedListener, AdapterView.OnItemSelectedListener {
 
     private lateinit var dashboardViewModel: DashboardViewModel
     private var _dashBoardBinding: FragmentDashboardBinding? = null
@@ -32,11 +37,9 @@ class DashboardFragment : Fragment(), MainActivity.onKeyBackPressedListener {
         _dashBoardBinding = FragmentDashboardBinding.inflate(inflater, container, false)
 
         setUserCrops()
+        setCropPercent()
 
-        numCounter(0, 80, 0) //harvestProcess
-        numCounter(0, 60, 1) //temp
-        numCounter(0, 90, 2) //humidity
-        numCounter(0, 12, 3) //wind
+        dashBoardBinding.cropList.onItemSelectedListener = this
         return dashBoardBinding.root
     }
 
@@ -68,6 +71,20 @@ class DashboardFragment : Fragment(), MainActivity.onKeyBackPressedListener {
             numCounter(0, 0, 5) //crop1
             numCounter(0, 0, 6) //crop2
             numCounter(0, 0, 7) //crop3
+        }
+    }
+
+    private fun setCropPercent(){
+        dashboardViewModel.getCropCategory("1234").observe(viewLifecycleOwner){
+            var cropList = arrayListOf<String>()
+            for(item in it){
+                cropList.add(item.cropsName)
+            }
+            Log.e("sfsd", cropList.toString())
+            var adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, cropList)
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            dashBoardBinding.cropList.adapter = adapter
+
         }
     }
 
@@ -147,6 +164,15 @@ class DashboardFragment : Fragment(), MainActivity.onKeyBackPressedListener {
         animation.start()
     }
 
+    private fun getCropPercent(cropName : String){
+        dashboardViewModel.getCropPercent("1234", cropName, GetMyLocation().getLocation(requireContext())).observe(viewLifecycleOwner){
+            numCounter(0, it.cropPercent.percent, 0) //harvestProcess
+            numCounter(0, it.weather.temp, 1) //temp
+            numCounter(0, it.weather.humidity, 2) //humidity
+            numCounter(0, it.weather.windSpeed, 3) //wind
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _dashBoardBinding = null
@@ -166,5 +192,13 @@ class DashboardFragment : Fragment(), MainActivity.onKeyBackPressedListener {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         (context as MainActivity).setOnKeyBackPressedListener(this)
+    }
+
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        getCropPercent(dashBoardBinding.cropList.getItemAtPosition(position).toString())
+    }
+
+    override fun onNothingSelected(parent: AdapterView<*>?) {
+
     }
 }
