@@ -16,6 +16,8 @@
         android:background="@color/backColor"
         tools:context=".ui.cameradetect.CameraDetectFragment">
 
+
+
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/camera_guideLine1"
             android:layout_width="wrap_content"
@@ -44,12 +46,26 @@
             app:layout_constraintBottom_toBottomOf="parent"/>
 
         <ImageView
+            android:id="@+id/mainLogo"
             android:layout_width="130dp"
             android:layout_height="90dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_margin="10dp"
             android:src="@drawable/tamjiat_logo_white"/>
+
+        <ImageView
+            android:id="@+id/backBtn"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            app:tint="@color/white"
+            android:src="@drawable/back_icon"
+            android:visibility="gone"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/mainLogo"
+            app:layout_constraintBottom_toBottomOf="@id/mainLogo"
+            app:layout_constraintVertical_bias="0.4"
+            android:layout_marginRight="25dp"/>
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/scanAnimation"
@@ -175,6 +191,91 @@
                 app:layout_constraintBottom_toBottomOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <FrameLayout
+            android:id="@+id/frameLayoutShutter"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/flashPhoto"/>
+
+        <FrameLayout
+            android:id="@+id/frameLayoutPreview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/black"
+                tools:context=".activity.photoConfirm.Photoconfirm">
+
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/photoGuideLine1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.1" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/photoGuideLine2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.8" />
+
+                <ImageView
+                    android:id="@+id/captureImg"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="@id/photoGuideLine2"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/photoGuideLine1" />
+
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/reCapture"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="3dp"
+                    android:padding="15dp"
+                    android:text="재촬영"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/recapture_btn"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/photoSendBtn" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/photoSendBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="7dp"
+                    android:padding="15dp"
+                    android:text="전송"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/photo_send_btn"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintLeft_toRightOf="@id/reCapture"
+                    app:layout_constraintRight_toRightOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </FrameLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

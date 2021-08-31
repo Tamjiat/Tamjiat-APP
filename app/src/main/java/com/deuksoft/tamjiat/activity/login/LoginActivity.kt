@@ -77,14 +77,12 @@ class LoginActivity : AppCompatActivity() {
                             "\n성별: ${user.kakaoAccount?.gender}")
 
                     UserInfo(this).setUserInfo(user)//사용자 정보 저장
-                    /*loginViewModel.findUser(this).observe(this){
-                        //Toast.makeText(this,  it, Toast.LENGTH_SHORT).show()
-                        Toast.makeText(this, "로그인에 성공하였습니다.", Toast.LENGTH_SHORT).show()
+                    loginViewModel.findUser(this).observe(this){
+                        Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+                        startActivity(Intent(this, MainActivity::class.java))
+                        finish()
+                    }
 
-                    }*/
-                    Toast.makeText(this, "로그인에 성공하였습니다.", Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this, MainActivity::class.java))
-                    finish()
                 }
             }
         }

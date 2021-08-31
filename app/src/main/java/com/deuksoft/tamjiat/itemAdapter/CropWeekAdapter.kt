@@ -14,7 +14,7 @@ class CropWeekAdapter(var context: Context, var cropList: List<CropWeekDTO>, var
         var passMonth = mainCultivatedItemBinding.passMonth
 
         fun bind(cropWeekDTO: CropWeekDTO){
-            cropNameItem.text = cropWeekDTO.cropName
+            cropNameItem.text = cropWeekDTO.cropsName
             passMonth.text = "${cropWeekDTO.month}주"
             itemView.setOnClickListener{itemClick(cropWeekDTO)}
         }

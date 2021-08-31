@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <variable
             name="gallaryDetectViewModel"
             type="com.deuksoft.tamjiat.ui.gallarydetect.GallaryDetectViewModel" />
@@ -15,6 +16,154 @@
         android:background="@color/backColor"
         tools:context=".ui.gallarydetect.GallaryDetectFragment">
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gallary_Guideline1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.17" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gallary_Guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.83" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gallary_Guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.27" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gallary_Guideline4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.80" />
+
+        <ImageView
+            android:id="@+id/mainIcon"
+            android:layout_width="130dp"
+            android:layout_height="70dp"
+            android:layout_margin="20dp"
+            android:src="@drawable/tamjiat_logo_color_black"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/uploadTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="사진 업로드"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mainIcon" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/imageLayout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/gallary_image_back"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@id/gallary_Guideline4"
+            app:layout_constraintLeft_toLeftOf="@id/gallary_Guideline1"
+            app:layout_constraintRight_toRightOf="@id/gallary_Guideline2"
+            app:layout_constraintTop_toBottomOf="@id/gallary_Guideline3">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="선택된 이미지가 없습니다."
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/uploadImg"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@id/gallary_Guideline4"
+            app:layout_constraintLeft_toLeftOf="@id/gallary_Guideline1"
+            app:layout_constraintRight_toRightOf="@id/gallary_Guideline2"
+            app:layout_constraintTop_toBottomOf="@id/gallary_Guideline3" />
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/uploadBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/upload_btn"
+            android:drawableLeft="@drawable/upload_icon"
+            android:drawablePadding="20dp"
+            android:drawableTint="@color/white"
+            android:paddingHorizontal="32dp"
+            android:paddingVertical="10dp"
+            android:text="업로드"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/reSelectBtn"
+            app:layout_constraintTop_toBottomOf="@id/imageLayout" />
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/reSelectBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/upload_btn"
+            android:drawableLeft="@drawable/gallary_icon"
+            android:drawablePadding="10dp"
+            android:drawableTint="@color/white"
+            android:paddingHorizontal="25dp"
+            android:paddingVertical="10dp"
+            android:text="다시 선택"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/uploadBtn"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageLayout" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/imageSelectBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/upload_btn"
+            android:drawableLeft="@drawable/gallary_icon"
+            android:drawablePadding="10dp"
+            android:drawableTint="@color/white"
+            android:paddingHorizontal="35dp"
+            android:paddingVertical="10dp"
+            android:text="이미지 선택"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageLayout" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

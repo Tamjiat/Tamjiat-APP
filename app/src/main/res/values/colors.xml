@@ -33,4 +33,10 @@
     <color name="userName">#e5c92c</color>
     <color name="customGreen">#27ae60</color>
     <color name="customGray">#7f7f7f</color>
+
+    <color name="photoRecapture">#202427</color>
+    <color name="photoSendBtn">#00be5f</color>
+
+    <color name="flashPhoto">#1E1E1E</color>
 </resources>
+

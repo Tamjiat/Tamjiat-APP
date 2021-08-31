@@ -2,11 +2,10 @@ package com.deuksoft.tamjiat.HTTPManager
 
 
 import com.deuksoft.tamjiat.HTTPManager.DTOManager.*
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.QueryMap
+import retrofit2.http.*
 
 interface RetrofitInterface {
     @GET("/weather/today")
@@ -30,6 +29,10 @@ interface RetrofitInterface {
     @POST("/dash/cropPercent")
     fun getCropPercent(@Body requestData : HashMap<String, String>):Call<CropPercentDTO>
 
-    @POST("/auth/findUserA")
+    @POST("/auth/verificationUserInfo")
     fun findUser(@Body userInfo : HashMap<String, String>):Call<PublicDTO>
+
+    @Multipart
+    @POST("/dash/cropMulter")
+    fun sendImage(@Part cropImg : MultipartBody.Part, @PartMap data : HashMap<String, RequestBody>):Call<PublicDTO>
 }

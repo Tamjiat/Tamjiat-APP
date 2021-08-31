@@ -75,7 +75,7 @@ class DashboardFragment : Fragment(), MainActivity.onKeyBackPressedListener, Ada
     }
 
     private fun setCropPercent(){
-        dashboardViewModel.getCropCategory("1234").observe(viewLifecycleOwner){
+        dashboardViewModel.getCropCategory(UserInfo(requireContext()).getUserInfo()["USER_ID"]!!).observe(viewLifecycleOwner){
             var cropList = arrayListOf<String>()
             for(item in it){
                 cropList.add(item.cropsName)
@@ -165,7 +165,7 @@ class DashboardFragment : Fragment(), MainActivity.onKeyBackPressedListener, Ada
     }
 
     private fun getCropPercent(cropName : String){
-        dashboardViewModel.getCropPercent("1234", cropName, GetMyLocation().getLocation(requireContext())).observe(viewLifecycleOwner){
+        dashboardViewModel.getCropPercent(UserInfo(requireContext()).getUserInfo()["USER_ID"]!!, cropName, GetMyLocation().getLocation(requireContext())).observe(viewLifecycleOwner){
             numCounter(0, it.cropPercent.percent, 0) //harvestProcess
             numCounter(0, it.weather.temp, 1) //temp
             numCounter(0, it.weather.humidity, 2) //humidity
