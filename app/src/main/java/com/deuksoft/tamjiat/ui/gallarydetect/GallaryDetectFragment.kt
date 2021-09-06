@@ -84,7 +84,7 @@ class GallaryDetectFragment: Fragment(), MainActivity.onKeyBackPressedListener, 
     private fun sendImage(){
         var drawble = gallaryBinding.uploadImg.drawable as BitmapDrawable
         gallaryDetectViewModel.sendGallayImg(drawble.bitmap, UserInfo(requireContext()).getUserInfo()["USER_ID"]!!).observe(viewLifecycleOwner){
-            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+            Log.e("resultLog", it.toString())
         }
     }
 

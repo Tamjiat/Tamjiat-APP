@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.deuksoft.tamjiat.HTTPManager.DTOManager.PublicDTO
+import com.deuksoft.tamjiat.HTTPManager.DTOManager.ResultDTO
 import com.deuksoft.tamjiat.HTTPManager.RetrofitAPI
 import com.deuksoft.tamjiat.HTTPManager.RetrofitInterface
 import com.deuksoft.tamjiat.HTTPManager.Tools
@@ -22,8 +23,8 @@ class ImageRepository {
     private val service = retrofit.create(RetrofitInterface::class.java)
     val message =  MutableLiveData<String>()
 
-    fun sendImage(bitmap: Bitmap, userId :String): LiveData<String> {
-        var result = MutableLiveData<String>()
+    fun sendImage(bitmap: Bitmap, userId :String): LiveData<ResultDTO> {
+        var result = MutableLiveData<ResultDTO>()
 
         val byteArrayOutputStream = ByteArrayOutputStream()
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)
@@ -34,13 +35,13 @@ class ImageRepository {
         var info = hashMapOf(
             "userId" to id
         )
-        service.sendImage(uploadImg, info).enqueue(object :Callback<PublicDTO>{
+        service.sendImage(uploadImg, info).enqueue(object :Callback<ResultDTO>{
 
-            override fun onResponse(call: Call<PublicDTO>, response: Response<PublicDTO>) {
-                result.value = response.body()!!.message
+            override fun onResponse(call: Call<ResultDTO>, response: Response<ResultDTO>) {
+                result.value = response.body()
             }
 
-            override fun onFailure(call: Call<PublicDTO>, t: Throwable) {
+            override fun onFailure(call: Call<ResultDTO>, t: Throwable) {
                 message.value = "서버와의 통신이 원활하지 않습니다."
             }
 

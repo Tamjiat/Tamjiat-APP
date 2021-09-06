@@ -34,5 +34,5 @@ interface RetrofitInterface {
 
     @Multipart
     @POST("/dash/cropMulter")
-    fun sendImage(@Part cropImg : MultipartBody.Part, @PartMap data : HashMap<String, RequestBody>):Call<PublicDTO>
+    fun sendImage(@Part cropImg : MultipartBody.Part, @PartMap data : HashMap<String, RequestBody>):Call<ResultDTO>
 }

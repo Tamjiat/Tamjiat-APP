@@ -249,10 +249,8 @@ class CameraDetectFragment : Fragment(), AdapterView.OnItemSelectedListener, Vie
     private fun sendPhoto(){
         var drawble = cameraBinding.captureImg.drawable as BitmapDrawable
         cameraDetectViewModel.sendImage(drawble.bitmap, UserInfo(requireContext()).getUserInfo()["USER_ID"]!!).observe(viewLifecycleOwner){
-            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+            Log.e("resultLog", it.toString())
         }
     }
-
-
 
 }
