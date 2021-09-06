@@ -1,5 +1,6 @@
 package com.deuksoft.tamjiat.HTTPManager.RepositoryManager
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.deuksoft.tamjiat.HTTPManager.DTOManager.TodayWeatherDTO
@@ -30,6 +31,7 @@ class WeatherRepository {
             }
             override fun onFailure(call: Call<TodayWeatherDTO>, t: Throwable) {
                message.value = "서버와의 연결이 원활하지 않습니다."
+                Log.e("dsfds", t.message.toString())
             }
 
         })

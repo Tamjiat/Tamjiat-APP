@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".activity.result.ResultActivity">
+
+            <ImageView
+                android:id="@+id/resultImg"
+                android:layout_width="0dp"
+                android:layout_height="270dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/tamjiat_logo_color_black"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/diseaseNameKor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="25sp"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/resultImg"
+                tools:text="고추 탄저병" />
+
+            <TextView
+                android:id="@+id/diseaseNameEng"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/diseaseName"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBaseline_toBaselineOf="@id/diseaseNameKor"
+                app:layout_constraintLeft_toRightOf="@id/diseaseNameKor"
+
+                app:layout_constraintTop_toTopOf="@id/diseaseNameKor"
+                tools:text="Anthracnose" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/diseaseCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:background="@drawable/result_card"
+                android:padding="15dp"
+                app:layout_constraintTop_toBottomOf="@id/diseaseNameEng">
+
+                <ImageView
+                    android:id="@+id/germsImg"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/germs"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/germsName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:text="병원균"
+                    android:textColor="@color/germsColor"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="20dp"
+                    app:layout_constraintBottom_toBottomOf="@id/germsImg"
+                    app:layout_constraintLeft_toRightOf="@id/germsImg"
+                    app:layout_constraintRight_toLeftOf="@id/germsNameTxt"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/germsNameTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:textColor="@color/germsColor"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@id/germsImg"
+                    app:layout_constraintLeft_toRightOf="@id/germsName"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:singleLine="true"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Glomerella cingulata" />
+
+                <ImageView
+                    android:id="@+id/calandarImg"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/calendar"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/germsImg" />
+
+                <TextView
+                    android:id="@+id/calandarDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:text="최대 발병 시기"
+                    android:textColor="@color/germsColor"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@id/calandarImg"
+                    app:layout_constraintLeft_toRightOf="@id/calandarImg"
+                    app:layout_constraintRight_toLeftOf="@id/calandarDateTxt"
+                    app:layout_constraintTop_toTopOf="@id/calandarImg" />
+
+                <TextView
+                    android:id="@+id/calandarDateTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:textColor="@color/germsColor"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@id/calandarImg"
+                    app:layout_constraintLeft_toRightOf="@id/calandarDate"
+                    app:layout_constraintTop_toTopOf="@id/calandarImg"
+                    tools:text="9월 ~ 10월" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <ImageView
+                android:id="@+id/leafImg"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginVertical="25dp"
+                android:layout_marginLeft="20dp"
+                android:src="@drawable/leaf"
+                app:layout_constraintBottom_toTopOf="@id/sicknessTxt"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/diseaseCard" />
+
+            <TextView
+                android:id="@+id/sickness"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="병징"
+                android:textColor="@color/black"
+                android:textSize="23sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/leafImg"
+                app:layout_constraintLeft_toRightOf="@id/leafImg"
+                app:layout_constraintTop_toTopOf="@id/leafImg" />
+
+            <TextView
+                android:id="@+id/sicknessTxt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20sp"
+                android:background="@drawable/result_card"
+                android:padding="15dp"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/leafImg"
+                tools:text="잎과 줄기에도 발생할 수 있으나 주로 과실에 발생한다." />
+
+            <ImageView
+                android:id="@+id/leafImg2"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginVertical="25dp"
+                android:layout_marginLeft="20dp"
+                android:src="@drawable/leaf"
+                app:layout_constraintBottom_toTopOf="@id/solutionTxt"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/sicknessTxt" />
+
+            <TextView
+                android:id="@+id/solution"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="해결방법"
+                android:textColor="@color/black"
+                android:textSize="23sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/leafImg2"
+                app:layout_constraintLeft_toRightOf="@id/leafImg2"
+                app:layout_constraintTop_toTopOf="@id/leafImg2" />
+
+            <TextView
+                android:id="@+id/solutionTxt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20sp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/result_card"
+                android:padding="15dp"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/solution"
+                tools:text="잎과 줄기에도 발생할 수 있으나 주로 과실에 발생한다." />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</layout>

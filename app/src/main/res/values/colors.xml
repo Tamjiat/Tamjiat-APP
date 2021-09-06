@@ -38,5 +38,9 @@
     <color name="photoSendBtn">#00be5f</color>
 
     <color name="flashPhoto">#1E1E1E</color>
+
+    <color name="diseaseName">#b4604d</color>
+    <color name="germsColor">#8C8C8C</color>
+    <color name="result_card">#B5B5B5</color>
 </resources>
 
