@@ -1,5 +1,6 @@
 package com.deuksoft.tamjiat.ui.gallarydetect
 
+import android.R
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -16,6 +17,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
@@ -28,10 +31,11 @@ import com.deuksoft.tamjiat.databinding.FragmentGallarydetectBinding
 import java.lang.Exception
 
 
-class GallaryDetectFragment: Fragment(), MainActivity.onKeyBackPressedListener, View.OnClickListener {
+class GallaryDetectFragment: Fragment(), MainActivity.onKeyBackPressedListener, View.OnClickListener, AdapterView.OnItemSelectedListener {
     private var _gallaryBinding: FragmentGallarydetectBinding? = null
     private lateinit var gallaryDetectViewModel: GallaryDetectViewModel
     private val gallaryBinding get() = _gallaryBinding!!
+    private lateinit var cropsName : String
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         gallaryDetectViewModel = ViewModelProvider(this).get(GallaryDetectViewModel::class.java)
@@ -39,10 +43,17 @@ class GallaryDetectFragment: Fragment(), MainActivity.onKeyBackPressedListener, 
 
         gallaryBinding.gallaryDetectViewModel = gallaryDetectViewModel
         gallaryBinding.lifecycleOwner = this
-
+        init()
         gallaryBinding.imageSelectBtn.setOnClickListener(this)
         gallaryBinding.uploadBtn.setOnClickListener(this)
+        gallaryBinding.cropsName.onItemSelectedListener = this
         return gallaryBinding.root
+    }
+
+    private fun init(){
+        var cropsAdapter = ArrayAdapter(requireContext(), R.layout.simple_spinner_dropdown_item, resources.getStringArray(
+            com.deuksoft.tamjiat.R.array.cropNames))
+        gallaryBinding.cropsName.adapter = cropsAdapter
     }
 
     fun checkPerm(){
@@ -83,7 +94,7 @@ class GallaryDetectFragment: Fragment(), MainActivity.onKeyBackPressedListener, 
 
     private fun sendImage(){
         var drawble = gallaryBinding.uploadImg.drawable as BitmapDrawable
-        gallaryDetectViewModel.sendGallayImg(drawble.bitmap, UserInfo(requireContext()).getUserInfo()["USER_ID"]!!).observe(viewLifecycleOwner){
+        gallaryDetectViewModel.sendGallayImg(drawble.bitmap, UserInfo(requireContext()).getUserInfo()["USER_ID"]!!, cropsName, gallaryBinding.beedNameTxt.text.toString()).observe(viewLifecycleOwner){
             Log.e("resultLog", it.toString())
         }
     }
@@ -170,5 +181,13 @@ class GallaryDetectFragment: Fragment(), MainActivity.onKeyBackPressedListener, 
                 sendImage()
             }
         }
+    }
+
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        cropsName = parent?.getItemAtPosition(position).toString()
+    }
+
+    override fun onNothingSelected(parent: AdapterView<*>?) {
+
     }
 }

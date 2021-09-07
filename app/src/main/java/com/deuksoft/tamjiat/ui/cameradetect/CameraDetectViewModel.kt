@@ -13,7 +13,7 @@ class CameraDetectViewModel : ViewModel() {
 
     var imageRepository = ImageRepository()
 
-    fun sendImage(bitmap: Bitmap, userId : String):LiveData<ResultDTO>{
-        return imageRepository.sendImage(bitmap, userId)
+    fun sendImage(bitmap: Bitmap, userId : String, cropsName : String, beedName : String):LiveData<ResultDTO>{
+        return imageRepository.sendImage(bitmap, userId, cropsName, beedName)
     }
 }

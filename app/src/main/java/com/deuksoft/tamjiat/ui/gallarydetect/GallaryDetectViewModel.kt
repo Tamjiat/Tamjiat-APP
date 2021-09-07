@@ -10,7 +10,7 @@ import com.deuksoft.tamjiat.HTTPManager.RepositoryManager.ImageRepository
 class GallaryDetectViewModel(application: Application): AndroidViewModel(application) {
     var imageRepository = ImageRepository()
 
-    fun sendGallayImg(bitmap: Bitmap, userId : String):LiveData<ResultDTO>{
-        return imageRepository.sendImage(bitmap, userId)
+    fun sendGallayImg(bitmap: Bitmap, userId : String, cropsName : String, beedName : String):LiveData<ResultDTO>{
+        return imageRepository.sendImage(bitmap, userId,cropsName, beedName)
     }
 }

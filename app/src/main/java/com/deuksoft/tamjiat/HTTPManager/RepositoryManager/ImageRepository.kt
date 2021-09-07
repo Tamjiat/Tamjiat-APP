@@ -23,7 +23,7 @@ class ImageRepository {
     private val service = retrofit.create(RetrofitInterface::class.java)
     val message =  MutableLiveData<String>()
 
-    fun sendImage(bitmap: Bitmap, userId :String): LiveData<ResultDTO> {
+    fun sendImage(bitmap: Bitmap, userId :String, cropsName : String, beedName : String): LiveData<ResultDTO> {
         var result = MutableLiveData<ResultDTO>()
 
         val byteArrayOutputStream = ByteArrayOutputStream()
@@ -31,9 +31,13 @@ class ImageRepository {
         var requestBody = RequestBody.create(MediaType.parse("image/jpg"), byteArrayOutputStream.toByteArray())
         var uploadImg = MultipartBody.Part.createFormData("myFile", "${userId}.jpg", requestBody)
         var id = RequestBody.create(MediaType.parse("text/plain"), userId)
+        var cn = RequestBody.create(MediaType.parse("text/plain"), cropsName)
+        var bn = RequestBody.create(MediaType.parse("text/plain"), beedName)
 
         var info = hashMapOf(
-            "userId" to id
+            "Cropkind" to cn,
+            "userid" to id,
+            "CropName" to bn,
         )
         service.sendImage(uploadImg, info).enqueue(object :Callback<ResultDTO>{
 

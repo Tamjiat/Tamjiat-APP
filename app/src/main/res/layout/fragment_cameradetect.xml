@@ -149,10 +149,10 @@
                 app:layout_constraintTop_toTopOf="parent"/>
 
             <TextView
-                android:id="@+id/farmNum"
+                android:id="@+id/beedName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="농가번호 : "
+                android:text="품종이름 : "
                 android:textSize="16sp"
                 android:textColor="@color/black"
                 android:layout_marginTop="20dp"
@@ -160,14 +160,15 @@
                 app:layout_constraintTop_toBottomOf="@id/subTitle"
                 app:layout_constraintBottom_toBottomOf="parent"/>
 
-            <TextView
-                android:id="@+id/farmNumTxt"
+            <EditText
+                android:id="@+id/beedNameTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="20210001"
+                android:hint="품종을 입력해주세요"
                 android:textSize="16sp"
+                android:background="@null"
                 android:textColor="@color/black"
-                app:layout_constraintLeft_toRightOf="@id/farmNum"
+                app:layout_constraintLeft_toRightOf="@id/beedName"
                 app:layout_constraintBottom_toBottomOf="parent"/>
 
             <TextView

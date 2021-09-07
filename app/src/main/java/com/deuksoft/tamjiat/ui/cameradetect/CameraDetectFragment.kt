@@ -47,7 +47,7 @@ class CameraDetectFragment : Fragment(), AdapterView.OnItemSelectedListener, Vie
     private lateinit var cameraExecutor: ExecutorService
     private lateinit var cameraAnimationListener: Animation.AnimationListener
     private var saveUri : Uri? = null
-
+    private lateinit var cropsName : String
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         cameraDetectViewModel = ViewModelProvider(this).get(CameraDetectViewModel::class.java)
         _cameraBinding = FragmentCameradetectBinding.inflate(inflater, container, false)
@@ -137,9 +137,7 @@ class CameraDetectFragment : Fragment(), AdapterView.OnItemSelectedListener, Vie
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        var s = parent?.getItemAtPosition(position).toString()
-        Log.e("items", s)
-
+        cropsName = parent?.getItemAtPosition(position).toString()
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -152,8 +150,8 @@ class CameraDetectFragment : Fragment(), AdapterView.OnItemSelectedListener, Vie
                 cameraBinding.apply {
                     scanWait.visibility = View.GONE
                     noticeTxt.visibility = View.GONE
-                    farmNum.visibility = View.GONE
-                    farmNumTxt.visibility = View.GONE
+                    beedName.visibility = View.GONE
+                    beedNameTxt.visibility = View.GONE
                     scanAnimation.visibility = View.GONE
                     photographerName.visibility = View.GONE
                     photographerNameTxt.visibility = View.GONE
@@ -166,8 +164,8 @@ class CameraDetectFragment : Fragment(), AdapterView.OnItemSelectedListener, Vie
                 cameraBinding.apply {
                     scanWait.visibility = View.VISIBLE
                     noticeTxt.visibility = View.VISIBLE
-                    farmNum.visibility = View.VISIBLE
-                    farmNumTxt.visibility = View.VISIBLE
+                    beedName.visibility = View.VISIBLE
+                    beedNameTxt.visibility = View.VISIBLE
                     scanAnimation.visibility = View.VISIBLE
                     photographerName.visibility = View.VISIBLE
                     photographerNameTxt.visibility = View.VISIBLE
@@ -248,7 +246,7 @@ class CameraDetectFragment : Fragment(), AdapterView.OnItemSelectedListener, Vie
 
     private fun sendPhoto(){
         var drawble = cameraBinding.captureImg.drawable as BitmapDrawable
-        cameraDetectViewModel.sendImage(drawble.bitmap, UserInfo(requireContext()).getUserInfo()["USER_ID"]!!).observe(viewLifecycleOwner){
+        cameraDetectViewModel.sendImage(drawble.bitmap, UserInfo(requireContext()).getUserInfo()["USER_ID"]!!,cropsName, cameraBinding.beedNameTxt.text.toString()).observe(viewLifecycleOwner){
             Log.e("resultLog", it.toString())
         }
     }
