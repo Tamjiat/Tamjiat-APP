@@ -1,5 +1,6 @@
 package com.deuksoft.tamjiat.ui.cameradetect
 
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -29,6 +30,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.deuksoft.tamjiat.R
 import com.deuksoft.tamjiat.SaveInfoManager.UserInfo
 import com.deuksoft.tamjiat.activity.main.MainActivity
+import com.deuksoft.tamjiat.activity.result.ResultActivity
 import com.deuksoft.tamjiat.databinding.FragmentCameradetectBinding
 import java.io.File
 import java.lang.Exception
@@ -48,6 +50,8 @@ class CameraDetectFragment : Fragment(), AdapterView.OnItemSelectedListener, Vie
     private lateinit var cameraAnimationListener: Animation.AnimationListener
     private var saveUri : Uri? = null
     private lateinit var cropsName : String
+    lateinit var progressDialog : ProgressDialog
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         cameraDetectViewModel = ViewModelProvider(this).get(CameraDetectViewModel::class.java)
         _cameraBinding = FragmentCameradetectBinding.inflate(inflater, container, false)
@@ -58,6 +62,11 @@ class CameraDetectFragment : Fragment(), AdapterView.OnItemSelectedListener, Vie
         setCameraAnimationListener()
         init()
         outputDirectory = getOutputDirectory()
+
+        progressDialog = ProgressDialog(requireContext())
+        progressDialog.setMessage("분석 중...")
+        progressDialog.setCancelable(false)
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER)
 
         cameraBinding.cropsName.onItemSelectedListener = this
         cameraBinding.scanWait.setOnClickListener(this)
@@ -245,9 +254,14 @@ class CameraDetectFragment : Fragment(), AdapterView.OnItemSelectedListener, Vie
     }
 
     private fun sendPhoto(){
+        progressDialog.show()
         var drawble = cameraBinding.captureImg.drawable as BitmapDrawable
         cameraDetectViewModel.sendImage(drawble.bitmap, UserInfo(requireContext()).getUserInfo()["USER_ID"]!!,cropsName, cameraBinding.beedNameTxt.text.toString()).observe(viewLifecycleOwner){
-            Log.e("resultLog", it.toString())
+            Log.e("resultLog", it.result.toString())
+            progressDialog.dismiss()
+            var intent = Intent(requireContext(), ResultActivity::class.java)
+            intent.putExtra("result", it.result)
+            startActivity(intent)
         }
     }
 

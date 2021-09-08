@@ -1,10 +1,19 @@
 package com.deuksoft.tamjiat.HTTPManager.DTOManager
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class ResultDTO(
+    @SerializedName("result")
+    var result : ResultDetail
+)
+
+data class ResultDetail(
     @SerializedName("cdName")
     var cdName: String,
+
+    @SerializedName("cropsImage")
+    var cropsImage: String,
 
     @SerializedName("cdNameEng")
     var cdNameEng: String,
@@ -20,4 +29,4 @@ data class ResultDTO(
 
     @SerializedName("cdOccurDate")
     var cdOccurDate: String,
-)
+):Serializable

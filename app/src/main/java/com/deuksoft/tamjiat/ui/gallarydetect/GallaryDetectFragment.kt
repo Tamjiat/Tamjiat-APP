@@ -2,6 +2,7 @@ package com.deuksoft.tamjiat.ui.gallarydetect
 
 import android.R
 import android.app.Activity
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -27,6 +28,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.deuksoft.tamjiat.SaveInfoManager.UserInfo
 import com.deuksoft.tamjiat.activity.main.MainActivity
+import com.deuksoft.tamjiat.activity.result.ResultActivity
 import com.deuksoft.tamjiat.databinding.FragmentGallarydetectBinding
 import java.lang.Exception
 
@@ -36,6 +38,7 @@ class GallaryDetectFragment: Fragment(), MainActivity.onKeyBackPressedListener, 
     private lateinit var gallaryDetectViewModel: GallaryDetectViewModel
     private val gallaryBinding get() = _gallaryBinding!!
     private lateinit var cropsName : String
+    lateinit var progressDialog : ProgressDialog
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         gallaryDetectViewModel = ViewModelProvider(this).get(GallaryDetectViewModel::class.java)
@@ -47,6 +50,12 @@ class GallaryDetectFragment: Fragment(), MainActivity.onKeyBackPressedListener, 
         gallaryBinding.imageSelectBtn.setOnClickListener(this)
         gallaryBinding.uploadBtn.setOnClickListener(this)
         gallaryBinding.cropsName.onItemSelectedListener = this
+
+        progressDialog = ProgressDialog(requireContext())
+        progressDialog.setMessage("분석 중...")
+        progressDialog.setCancelable(false)
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER)
+
         return gallaryBinding.root
     }
 
@@ -93,9 +102,14 @@ class GallaryDetectFragment: Fragment(), MainActivity.onKeyBackPressedListener, 
     }
 
     private fun sendImage(){
+        progressDialog.show()
         var drawble = gallaryBinding.uploadImg.drawable as BitmapDrawable
         gallaryDetectViewModel.sendGallayImg(drawble.bitmap, UserInfo(requireContext()).getUserInfo()["USER_ID"]!!, cropsName, gallaryBinding.beedNameTxt.text.toString()).observe(viewLifecycleOwner){
             Log.e("resultLog", it.toString())
+            progressDialog.dismiss()
+            var intent = Intent(requireContext(), ResultActivity::class.java)
+            intent.putExtra("result", it.result)
+            startActivity(intent)
         }
     }
 
