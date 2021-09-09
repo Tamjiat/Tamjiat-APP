@@ -74,10 +74,8 @@
                     android:textColor="@color/germsColor"
                     android:textSize="17sp"
                     android:textStyle="bold"
-                    android:layout_marginLeft="20dp"
                     app:layout_constraintBottom_toBottomOf="@id/germsImg"
-                    app:layout_constraintLeft_toRightOf="@id/germsImg"
-                    app:layout_constraintRight_toLeftOf="@id/germsNameTxt"
+                    app:layout_constraintLeft_toLeftOf="@id/calandarDate"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
@@ -92,6 +90,7 @@
                     app:layout_constraintLeft_toRightOf="@id/germsName"
                     app:layout_constraintRight_toRightOf="parent"
                     android:singleLine="true"
+                    android:ems="10"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="Glomerella cingulata" />
 

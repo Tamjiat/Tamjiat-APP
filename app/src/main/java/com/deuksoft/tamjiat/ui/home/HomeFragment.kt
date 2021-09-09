@@ -1,6 +1,7 @@
 package com.deuksoft.tamjiat.ui.home
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
@@ -26,6 +27,7 @@ import com.deuksoft.tamjiat.HTTPManager.DTOManager.CropWeekDTO
 import com.deuksoft.tamjiat.R
 import com.deuksoft.tamjiat.SaveInfoManager.UserInfo
 import com.deuksoft.tamjiat.activity.main.MainActivity
+import com.deuksoft.tamjiat.activity.openSource.OpenSourceActivity
 import com.deuksoft.tamjiat.databinding.FragmentHomeBinding
 import com.deuksoft.tamjiat.itemAdapter.CropWeekAdapter
 import com.kakao.sdk.user.UserApiClient
@@ -44,6 +46,9 @@ class HomeFragment : Fragment(), MainActivity.onKeyBackPressedListener {
         homeBinding.apply {
             homeViewModel = homeViewModel
             lifecycleOwner = this@HomeFragment
+        }
+        homeBinding.appOpenSource.setOnClickListener {
+            startActivity(Intent(requireContext(), OpenSourceActivity::class.java))
         }
         setInitWeather()
         initUserInfo()

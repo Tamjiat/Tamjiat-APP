@@ -20,7 +20,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Tamjiat"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.result.ResultActivity"></activity>
+        <activity android:name=".activity.openSource.OpenSourceActivity"></activity>
+        <activity android:name=".activity.result.ResultActivity" />
         <activity android:name=".activity.photoConfirm.Photoconfirm" />
         <activity android:name=".activity.intro.IntroActivity">
             <intent-filter>
