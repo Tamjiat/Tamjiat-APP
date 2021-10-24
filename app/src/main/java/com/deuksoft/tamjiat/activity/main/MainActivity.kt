@@ -2,6 +2,8 @@ package com.deuksoft.tamjiat.activity.main
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.deuksoft.tamjiat.R
@@ -13,7 +15,7 @@ import com.deuksoft.tamjiat.ui.home.HomeFragment
 import nl.joery.animatedbottombar.AnimatedBottomBar
 import java.util.*
 
-class MainActivity : AppCompatActivity(), AnimatedBottomBar.OnTabSelectListener {
+class MainActivity : AppCompatActivity(), AnimatedBottomBar.OnTabSelectListener, View.OnClickListener {
 
     private lateinit var mainBinding: ActivityMainBinding
     private var onKeyBackPressed :onKeyBackPressedListener? = null
@@ -24,6 +26,7 @@ class MainActivity : AppCompatActivity(), AnimatedBottomBar.OnTabSelectListener 
         mainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mainBinding.root)
         mainBinding.navView.setOnTabSelectListener(this)
+
     }
     override fun onTabSelected(lastIndex: Int, lastTab: AnimatedBottomBar.Tab?, newIndex: Int,newTab: AnimatedBottomBar.Tab) {
         var fragment = Fragment()
@@ -83,6 +86,31 @@ class MainActivity : AppCompatActivity(), AnimatedBottomBar.OnTabSelectListener 
     fun setNavEnable(state :Boolean){
         for(i in 0..3){
             mainBinding.navView.setTabEnabledAt(i, state)
+        }
+    }
+
+    override fun onClick(v: View?) {
+        var fragment = Fragment()
+        when(v?.id){
+            R.id.home_btn1->{
+                fragment = CameraDetectFragment()
+            }
+            R.id.home_btn2->{
+                fragment = GallaryDetectFragment()
+            }
+        }
+        fragment.let {
+            supportFragmentManager.apply {
+                beginTransaction().replace(R.id.nav_host_fragment_activity_main, fragment).addToBackStack(null).commit()
+            }
+        }
+    }
+
+    fun replaceFragment(fragment: Fragment){
+        fragment.let {
+            supportFragmentManager.apply {
+                beginTransaction().replace(R.id.nav_host_fragment_activity_main, fragment).addToBackStack(null).commit()
+            }
         }
     }
 

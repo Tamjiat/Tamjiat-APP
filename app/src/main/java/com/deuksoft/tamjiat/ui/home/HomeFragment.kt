@@ -2,7 +2,6 @@ package com.deuksoft.tamjiat.ui.home
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.text.SpannableString
@@ -12,7 +11,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -30,15 +28,16 @@ import com.deuksoft.tamjiat.activity.main.MainActivity
 import com.deuksoft.tamjiat.activity.openSource.OpenSourceActivity
 import com.deuksoft.tamjiat.databinding.FragmentHomeBinding
 import com.deuksoft.tamjiat.itemAdapter.CropWeekAdapter
-import com.kakao.sdk.user.UserApiClient
+import com.deuksoft.tamjiat.ui.cameradetect.CameraDetectFragment
+import com.deuksoft.tamjiat.ui.gallarydetect.GallaryDetectFragment
 
-class HomeFragment : Fragment(), MainActivity.onKeyBackPressedListener {
+
+class HomeFragment : Fragment(), MainActivity.onKeyBackPressedListener, View.OnClickListener {
 
     private lateinit var homeViewModel: HomeViewModel
     private var _binding: FragmentHomeBinding? = null
 
     private val homeBinding get() = _binding!!
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
@@ -53,6 +52,9 @@ class HomeFragment : Fragment(), MainActivity.onKeyBackPressedListener {
         setInitWeather()
         initUserInfo()
         setUserCropInfo()
+        homeBinding.homeBtn1.setOnClickListener(this)
+        homeBinding.homeBtn2.setOnClickListener(this)
+
         return homeBinding.root
     }
 
@@ -152,5 +154,17 @@ class HomeFragment : Fragment(), MainActivity.onKeyBackPressedListener {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         (context as MainActivity).setOnKeyBackPressedListener(this)
+    }
+
+    override fun onClick(v: View?) {
+        when(v?.id){
+            R.id.home_btn1->{
+                (activity as MainActivity?)?.replaceFragment(CameraDetectFragment())
+            }
+            R.id.home_btn2->{
+
+                (activity as MainActivity?)?.replaceFragment(GallaryDetectFragment())
+            }
+        }
     }
 }
