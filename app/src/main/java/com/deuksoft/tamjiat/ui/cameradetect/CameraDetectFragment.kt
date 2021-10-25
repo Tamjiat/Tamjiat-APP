@@ -68,6 +68,9 @@ class CameraDetectFragment : Fragment(), AdapterView.OnItemSelectedListener, Vie
         progressDialog.setCancelable(false)
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER)
 
+        cameraDetectViewModel.userName.observe(viewLifecycleOwner){
+            cameraBinding.photographerNameTxt.text = "$it"
+        }
         cameraBinding.cropsName.onItemSelectedListener = this
         cameraBinding.scanWait.setOnClickListener(this)
         cameraBinding.backBtn.setOnClickListener(this)
@@ -254,14 +257,32 @@ class CameraDetectFragment : Fragment(), AdapterView.OnItemSelectedListener, Vie
     }
 
     private fun sendPhoto(){
+        if(cameraBinding.beedNameTxt.text.toString()=="" || cropsName=="선택하세요"){
+            AlertDialog.Builder(requireContext())
+                .setTitle("경고")
+                .setMessage("빈칸을 모두 채워주세요")
+                .setPositiveButton("확인", null)
+                .show()
+            return
+        }
+
         progressDialog.show()
         var drawble = cameraBinding.captureImg.drawable as BitmapDrawable
         cameraDetectViewModel.sendImage(drawble.bitmap, UserInfo(requireContext()).getUserInfo()["USER_ID"]!!,cropsName, cameraBinding.beedNameTxt.text.toString()).observe(viewLifecycleOwner){
             Log.e("resultLog", it.result.toString())
             progressDialog.dismiss()
-            var intent = Intent(requireContext(), ResultActivity::class.java)
-            intent.putExtra("result", it.result)
-            startActivity(intent)
+            if(it.result.cdName == "탐지불가"){
+                AlertDialog.Builder(requireContext())
+                    .setTitle("알림")
+                    .setMessage("요청한 사진은 탐지가 불가합니다.")
+                    .setPositiveButton("확인", null)
+                    .show()
+            }else{
+                var intent = Intent(requireContext(), ResultActivity::class.java)
+                intent.putExtra("result", it.result)
+                startActivity(intent)
+            }
+
         }
     }
 

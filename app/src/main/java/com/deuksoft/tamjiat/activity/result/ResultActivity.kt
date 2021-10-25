@@ -8,6 +8,8 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.signature.ObjectKey
 import com.deuksoft.tamjiat.HTTPManager.DTOManager.ResultDetail
+import com.deuksoft.tamjiat.HTTPManager.GlideApp
+import com.deuksoft.tamjiat.HTTPManager.MyGlideModule
 import com.deuksoft.tamjiat.HTTPManager.Tools
 import com.deuksoft.tamjiat.R
 import com.deuksoft.tamjiat.databinding.ActivityMainBinding
@@ -30,7 +32,7 @@ class ResultActivity : AppCompatActivity() {
             sicknessTxt.text = result.cdSickness
             solutionTxt.text = result.cdSolution
 
-            Glide.with(this@ResultActivity).load("${Tools().MAIN_URL}/upload/${result.cropsImage}")
+            GlideApp.with(this@ResultActivity).load("${Tools().MAIN_URL}/upload/${result.cropsImage}")
                 .error(Glide.with(this@ResultActivity).load(R.drawable.no_image))
                 .apply(
                     RequestOptions()

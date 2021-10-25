@@ -51,6 +51,9 @@
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="6034cf8d6f5a811e32e3188f1f552fa4" />
+        <meta-data
+            android:name="com.deuksoft.tamjiat.HTTPManager.MyGlideModule"
+            android:value="MyGlideModule" />
     </application>
 
 </manifest>

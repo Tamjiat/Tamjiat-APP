@@ -12,8 +12,8 @@ android {
         applicationId "com.deuksoft.tamjiat"
         minSdkVersion 24
         targetSdkVersion 30
-        versionCode 3
-        versionName "1.1"
+        versionCode 4
+        versionName "1.2"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -83,7 +83,13 @@ dependencies {
     implementation 'nl.joery.animatedbottombar:library:1.0.9'
 
     //웹 이미지 불러오기
-    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    kapt 'com.github.bumptech.glide:compiler:4.11.0'
+    implementation("com.github.bumptech.glide:okhttp3-integration:4.11.0") {
+        exclude group: 'glide-parent'
+    }
+
+
 
     //markdown 뷰
     implementation 'com.github.mukeshsolanki:MarkdownView-Android:1.0.8'
